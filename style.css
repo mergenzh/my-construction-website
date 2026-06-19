@@ -387,7 +387,7 @@ h2.section-title em { font-style: italic; color: var(--green-mid); }
   object-fit: cover;}
 .about-img-block p { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
 .about-accent-box {
-  position: absolute; bottom: -2rem; right: -2rem;
+  position: absolute; bottom: -4rem; right: -2rem;
   background: var(--green);
   padding: 1.5rem 2rem;
   color: white;
