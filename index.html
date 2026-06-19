@@ -4,645 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>K&Z Foundations LLC | Commercial & Residential General Contractor – Pittsburgh, PA</title>
-  <link rel="icon" type="image/png" href="K_Z.png">
+  <link rel="icon" type="image/png" href="images/K_Z.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --green-dark:   #1C3D2E;
-  --green:        #2B5741;
-  --green-mid:    #3D7A5A;
-  --green-light:  #5A9E78;
-  --green-pale:   #EBF3EE;
-  --green-tint:   #F4F8F5;
-  --white:        #FFFFFF;
-  --off-white:    #F8F7F4;
-  --charcoal:     #1A1A18;
-  --dark:         #252520;
-  --mid:          #3E3E38;
-  --muted:        #72726A;
-  --border:       #DDE6E1;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'Outfit', sans-serif;
-}
-
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--white);
-  color: var(--charcoal);
-  font-size: 16px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ─── TOP BAR ─── */
-.topbar {
-  background: var(--green-dark);
-  color: rgba(255,255,255,0.75);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  padding: 0.5rem 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.topbar a { color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }
-.topbar a:hover { color: var(--white); }
-.topbar-left { display: flex; gap: 2rem; align-items: center; }
-.topbar-right { display: flex; gap: 1.5rem; align-items: center; }
-.topbar-phone {
-  color: var(--white) !important;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-}
-
-/* ─── NAV ─── */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 4rem;
-  height: 76px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-}
-.nav-logo { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
-.nav-logo-img { height: 52px; width: auto; }
-.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-.nav-logo-name {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--green-dark);
-  letter-spacing: 0.01em;
-}
-.nav-logo-sub {
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.nav-links { display: flex; gap: 0; list-style: none; height: 76px; }
-.nav-links > li { position: relative; display: flex; align-items: center; }
-.nav-links > li > a {
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--mid);
-  text-decoration: none;
-  padding: 0 1.1rem;
-  height: 76px;
-  display: flex; align-items: center;
-  border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
-}
-.nav-links > li > a:hover { color: var(--green); border-bottom-color: var(--green); }
-.nav-cta {
-  background: var(--green) !important;
-  color: var(--white) !important;
-  padding: 0 1.5rem !important;
-  border-bottom: none !important;
-  border-radius: 3px;
-  margin-left: 0.5rem;
-  height: 42px !important;
-  display: flex; align-items: center;
-  font-size: 0.75rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.12em !important;
-  transition: background 0.2s !important;
-}
-.nav-cta:hover { background: var(--green-dark) !important; }
-
-/* dropdown */
-.has-dropdown:hover .dropdown { display: block; }
-.dropdown {
-  display: none;
-  position: absolute; top: 76px; left: 0;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--green);
-  min-width: 220px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  z-index: 300;
-}
-.dropdown li { list-style: none; }
-.dropdown a {
-  display: block;
-  padding: 0.75rem 1.25rem;
-  font-size: 0.8rem;
-  color: var(--mid);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.15s, color 0.15s;
-  letter-spacing: 0.04em;
-}
-.dropdown a:hover { background: var(--green-pale); color: var(--green-dark); }
-.dropdown li:last-child a { border-bottom: none; }
-
-/* ─── HERO ─── */
-#hero {
-  position: relative;
-  min-height: 92vh;
-  display: flex; align-items: center;
-  background: var(--green-dark);
-  overflow: hidden;
-}
-.hero-bg-pattern {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(135deg, rgba(255,255,255,0.02) 25%, transparent 25%),
-    linear-gradient(225deg, rgba(255,255,255,0.02) 25%, transparent 25%),
-    linear-gradient(315deg, rgba(255,255,255,0.02) 25%, transparent 25%),
-    linear-gradient(45deg,  rgba(255,255,255,0.02) 25%, transparent 25%);
-  background-size: 60px 60px;
-}
-.hero-gradient {
-  position: absolute; inset: 0;
-  background: linear-gradient(110deg, rgba(28,61,46,0.98) 0%, rgba(28,61,46,0.85) 50%, rgba(43,87,65,0.5) 100%);
-}
-.hero-right-image {
-  position: absolute; right: 0; top: 0; bottom: 0;
-  width: 50%;
-  background: var(--green-mid);
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 1rem;
-  overflow: hidden;
-}
-.hero-right-image::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, var(--green-dark) 0%, transparent 30%);
-  z-index: 1;
-}
-.hero-img-placeholder {
-  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
-  opacity: 0.12; z-index: 0;
-}
-.hero-img-placeholder svg { width: 100px; height: 100px; }
-.hero-img-placeholder p { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: white; }
-
-.hero-content {
-  position: relative; z-index: 2;
-  padding: 5rem 4rem;
-  max-width: 680px;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: rgba(90,158,120,0.2);
-  border: 1px solid rgba(90,158,120,0.4);
-  color: #8FD4AA;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 0.45rem 1rem;
-  border-radius: 2px;
-  margin-bottom: 1.75rem;
-}
-.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #8FD4AA; }
-h1.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
-  font-weight: 500;
-  line-height: 1.08;
-  color: var(--white);
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.01em;
-}
-h1.hero-title em { font-style: italic; color: #8FD4AA; }
-.hero-sub {
-  font-size: 1.05rem;
-  color: rgba(255,255,255,0.65);
-  max-width: 520px;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  font-weight: 300;
-}
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
-.btn-green {
-  background: var(--green-light);
-  color: var(--white);
-  padding: 1rem 2.25rem;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: none; border-radius: 3px;
-  cursor: pointer;
-  transition: background 0.25s;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-}
-.btn-green:hover { background: var(--green-mid); }
-.btn-ghost {
-  background: transparent;
-  color: var(--white);
-  padding: 1rem 2.25rem;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,0.35);
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.25s;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-}
-.btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
-.hero-stats {
-  display: flex; gap: 3rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid rgba(255,255,255,0.12);
-}
-.stat-num {
-  font-family: var(--font-display);
-  font-size: 2.75rem;
-  font-weight: 600;
-  color: var(--white);
-  line-height: 1;
-}
-.stat-num span { color: #8FD4AA; }
-.stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.35rem; }
-
-/* ─── PROOF STRIP ─── */
-.proof-strip {
-  background: var(--off-white);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 1.5rem 4rem;
-}
-.proof-strip-inner {
-  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center;
-}
-.proof-tag {
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--green-dark);
-  border: 1px solid var(--border);
-  padding: 0.55rem 1.25rem;
-  border-radius: 2px;
-  background: var(--white);
-  text-decoration: none;
-  transition: all 0.2s;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-}
-.proof-tag:hover { background: var(--green-dark); color: var(--white); border-color: var(--green-dark); }
-.proof-tag::before { content: '→'; font-size: 0.8rem; }
-.proof-divider { color: var(--border); font-size: 1.5rem; }
-
-/* ─── SECTIONS SHARED ─── */
-section { padding: 6rem 4rem; }
-.section-eyebrow {
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--green-mid); margin-bottom: 0.85rem;
-  display: flex; align-items: center; gap: 0.6rem;
-}
-.section-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--green-mid); }
-h2.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
-  font-weight: 500; line-height: 1.15;
-  color: var(--charcoal);
-}
-h2.section-title em { font-style: italic; color: var(--green-mid); }
-.divider { width: 48px; height: 3px; background: var(--green); margin: 1.5rem 0 2rem; border-radius: 2px; }
-
-/* ─── SERVICES ─── */
-#services { background: var(--charcoal); padding: 6rem 4rem; }
-#services .section-eyebrow { color: #8FD4AA; }
-#services .section-eyebrow::before { background: #8FD4AA; }
-#services h2 { color: var(--white); }
-#services .divider { background: var(--green-light); }
-.services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 2rem; }
-.services-sub { color: rgba(255,255,255,0.5); max-width: 440px; font-size: 0.95rem; font-weight: 300; line-height: 1.8; }
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
-.service-card {
-  background: var(--dark);
-  padding: 2.5rem 2rem;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  border: 1px solid transparent;
-  position: relative; overflow: hidden;
-}
-.service-card::before {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-  height: 3px; background: var(--green-light);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s;
-}
-.service-card:hover { background: #1E1E1B; border-color: rgba(90,158,120,0.25); }
-.service-card:hover::before { transform: scaleX(1); }
-.service-num {
-  font-family: var(--font-display);
-  font-size: 3.5rem; font-weight: 600;
-  color: rgba(255,255,255,0.05);
-  line-height: 1; margin-bottom: 1rem;
-}
-.service-icon {
-  width: 44px; height: 44px;
-  border: 1px solid rgba(90,158,120,0.35);
-  border-radius: 3px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--green-light);
-  margin-bottom: 1.25rem;
-}
-.service-name {
-  font-family: var(--font-display);
-  font-size: 1.35rem; font-weight: 500;
-  color: var(--white); margin-bottom: 0.75rem;
-}
-.service-desc { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.75; font-weight: 300; }
-.service-arrow { color: var(--green-light); margin-top: 1.25rem; font-size: 0.8rem; letter-spacing: 0.1em; opacity: 0; transition: opacity 0.2s; }
-.service-card:hover .service-arrow { opacity: 1; }
-
-/* ─── ABOUT ─── */
-#about { background: var(--green-tint); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.about-visual { position: relative; }
-.about-img-block {
-  background: var(--green-dark);
-  aspect-ratio: 4/5;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 1rem;
-}
-.about-img-block svg { opacity: 0.08; }
-.about-img-block p { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
-.about-accent-box {
-  position: absolute; bottom: -2rem; right: -2rem;
-  background: var(--green);
-  padding: 1.5rem 2rem;
-  color: white;
-}
-.about-accent-num { font-family: var(--font-display); font-size: 3rem; font-weight: 600; line-height: 1; }
-.about-accent-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 0.25rem; }
-.about-text p { color: var(--muted); margin-bottom: 1.25rem; line-height: 1.85; font-size: 0.95rem; font-weight: 300; }
-.about-clients { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 2rem; }
-.client-chip {
-  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--green-dark);
-  border: 1px solid rgba(43,87,65,0.25);
-  background: var(--white);
-  padding: 0.4rem 0.9rem; border-radius: 100px;
-}
-
-/* ─── PORTFOLIO ─── */
-#portfolio { background: var(--white); }
-.portfolio-tabs { display: flex; gap: 0.5rem; margin: 2rem 0 2.5rem; flex-wrap: wrap; }
-.tab {
-  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--muted);
-  padding: 0.6rem 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  cursor: pointer; transition: all 0.2s; background: var(--white);
-}
-.tab.active, .tab:hover { background: var(--green-dark); color: var(--white); border-color: var(--green-dark); }
-.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.portfolio-item {
-  position: relative; overflow: hidden;
-  background: var(--green-dark);
-  cursor: pointer; border-radius: 2px;
-}
-.portfolio-item:first-child { grid-column: span 2; }
-.portfolio-placeholder {
-  width: 100%; aspect-ratio: 4/3;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 0.75rem;
-  background: linear-gradient(135deg, #2B5741 0%, #1C3D2E 100%);
-}
-.portfolio-item:first-child .portfolio-placeholder { aspect-ratio: 16/9; }
-.portfolio-placeholder svg { opacity: 0.15; }
-.portfolio-placeholder p { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
-.portfolio-overlay {
-  position: absolute; inset: 0;
-  background: rgba(28,61,46,0.9);
-  display: flex; align-items: flex-end;
-  padding: 2rem;
-  opacity: 0; transition: opacity 0.3s;
-}
-.portfolio-item:hover .portfolio-overlay { opacity: 1; }
-.portfolio-info h3 {
-  font-family: var(--font-display);
-  font-size: 1.4rem; font-weight: 500; color: white; margin-bottom: 0.25rem;
-}
-.portfolio-info span { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-.portfolio-label {
-  position: absolute; top: 1rem; left: 1rem;
-  background: var(--green); color: white;
-  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
-  padding: 0.3rem 0.75rem; border-radius: 2px;
-}
-
-/* ─── TESTIMONIALS ─── */
-#testimonials { background: var(--green-dark); }
-#testimonials .section-eyebrow { color: #8FD4AA; }
-#testimonials .section-eyebrow::before { background: #8FD4AA; }
-#testimonials h2 { color: var(--white); }
-#testimonials .divider { background: var(--green-light); }
-.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-.testi-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 2.25rem;
-  border-radius: 3px;
-  transition: background 0.3s;
-  position: relative;
-}
-.testi-card:hover { background: rgba(255,255,255,0.08); }
-.testi-quote {
-  font-family: var(--font-display);
-  font-size: 4rem; line-height: 0.5;
-  color: var(--green-light); opacity: 0.4;
-  margin-bottom: 1.5rem;
-}
-.testi-text {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.1rem; line-height: 1.7;
-  color: rgba(255,255,255,0.8);
-  margin-bottom: 1.75rem;
-}
-.testi-stars { color: #8FD4AA; letter-spacing: 0.1em; font-size: 0.9rem; margin-bottom: 1rem; }
-.testi-name { font-size: 0.85rem; font-weight: 600; color: var(--white); letter-spacing: 0.03em; }
-.testi-role { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; margin-top: 0.2rem; }
-
-/* ─── BLOG ─── */
-#blog { background: var(--off-white); }
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-.blog-card { background: var(--white); border: 1px solid var(--border); padding: 2rem; border-radius: 3px; transition: transform 0.2s, box-shadow 0.2s; }
-.blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
-.blog-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.75rem; }
-.blog-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.75rem; line-height: 1.35; }
-.blog-excerpt { font-size: 0.875rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 300; }
-.blog-meta { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; }
-.blog-link { color: var(--green-mid); text-decoration: none; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.08em; }
-.blog-link:hover { color: var(--green-dark); }
-
-/* ─── FAQ ─── */
-#faq { background: var(--green-tint); }
-.faq-layout { display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; margin-top: 3rem; align-items: start; }
-.faq-sidebar p { color: var(--muted); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1.5rem; font-weight: 300; }
-.faq-list {}
-.faq-item { border-top: 1px solid var(--border); }
-.faq-item:last-child { border-bottom: 1px solid var(--border); }
-.faq-btn {
-  width: 100%; display: flex; justify-content: space-between; align-items: center;
-  padding: 1.4rem 0; background: none; border: none; cursor: pointer; text-align: left; gap: 1rem;
-  font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; color: var(--charcoal);
-}
-.faq-ico {
-  flex-shrink: 0; width: 28px; height: 28px;
-  border-radius: 50%; border: 1.5px solid var(--green-mid);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--green-mid); font-size: 1.1rem;
-  transition: transform 0.3s, background 0.2s;
-}
-.faq-item.open .faq-ico { transform: rotate(45deg); background: var(--green-mid); color: white; border-color: var(--green-mid); }
-.faq-answer {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.3s;
-  font-size: 0.925rem; color: var(--muted); line-height: 1.85; font-weight: 300;
-}
-.faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.5rem; }
-
-/* ─── CONTACT ─── */
-#contact { background: var(--charcoal); }
-#contact .section-eyebrow { color: #8FD4AA; }
-#contact .section-eyebrow::before { background: #8FD4AA; }
-#contact h2 { color: var(--white); }
-#contact .divider { background: var(--green-light); }
-.contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; margin-top: 3rem; }
-.contact-info-block { color: rgba(255,255,255,0.6); }
-.contact-info-block p { margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.85; font-weight: 300; }
-.contact-detail { margin-bottom: 1.5rem; }
-.contact-detail-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-light); margin-bottom: 0.3rem; }
-.contact-detail-val { font-size: 0.95rem; color: rgba(255,255,255,0.85); }
-.contact-detail-val a { color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }
-.contact-detail-val a:hover { color: #8FD4AA; }
-.social-row { display: flex; gap: 0.75rem; margin-top: 2.5rem; }
-.social-btn {
-  width: 42px; height: 42px;
-  border: 1px solid rgba(255,255,255,0.12);
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.5);
-  text-decoration: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
-  border-radius: 3px; transition: all 0.2s;
-}
-.social-btn:hover { background: var(--green-mid); border-color: var(--green-mid); color: white; }
-
-/* FORM */
-.contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.45rem; }
-.form-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-.form-control {
-  background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.1);
-  color: white; padding: 0.9rem 1rem; font-family: var(--font-body); font-size: 0.9rem;
-  border-radius: 3px; outline: none; transition: border-color 0.2s; width: 100%; font-weight: 300;
-}
-.form-control:focus { border-color: var(--green-light); background: rgba(255,255,255,0.075); }
-.form-control::placeholder { color: rgba(255,255,255,0.2); }
-select.form-control option { background: var(--charcoal); }
-textarea.form-control { resize: vertical; min-height: 120px; }
-.upload-area {
-  border: 1.5px dashed rgba(255,255,255,0.12); border-radius: 3px; padding: 1.5rem;
-  text-align: center; cursor: pointer; transition: border-color 0.2s; position: relative;
-}
-.upload-area:hover { border-color: var(--green-light); }
-.upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-.upload-label { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
-.upload-label span { color: #8FD4AA; font-weight: 500; }
-.btn-submit {
-  background: var(--green-light); color: white; border: none;
-  padding: 1.05rem 2.5rem; font-family: var(--font-body);
-  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-  cursor: pointer; border-radius: 3px; transition: background 0.25s; align-self: flex-start;
-  margin-top: 0.25rem;
-}
-.btn-submit:hover { background: var(--green-mid); }
-.form-note { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 0.5rem; }
-
-/* ─── FOOTER ─── */
-.footer-main {
-  background: var(--green-dark);
-  padding: 4rem 4rem 2.5rem;
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem;
-}
-.footer-brand {}
-.footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-.footer-logo img { height: 44px; }
-.footer-logo-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: white; }
-.footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.8; font-weight: 300; margin-bottom: 1.5rem; }
-.footer-col h4 {
-  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--green-light); margin-bottom: 1.25rem;
-}
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-.footer-col a { font-size: 0.85rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; font-weight: 300; }
-.footer-col a:hover { color: white; }
-.footer-bottom {
-  background: #122318;
-  padding: 1.25rem 4rem;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 0.75rem; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; flex-wrap: wrap; gap: 0.5rem;
-}
-.footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
-.footer-bottom a:hover { color: rgba(255,255,255,0.65); }
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-.hero-content > * { opacity: 0; animation: fadeUp 0.8s ease forwards; }
-.hero-badge        { animation-delay: 0.05s; }
-h1.hero-title      { animation-delay: 0.2s; }
-.hero-sub          { animation-delay: 0.35s; }
-.hero-actions      { animation-delay: 0.5s; }
-.hero-stats        { animation-delay: 0.65s; }
-
-/* ─── MOBILE ─── */
-@media (max-width: 960px) {
-  .topbar { padding: 0.5rem 1.5rem; font-size: 0.7rem; }
-  .topbar-left { gap: 1rem; }
-  nav { padding: 0 1.5rem; }
-  .nav-links { display: none; }
-  section { padding: 4rem 1.5rem; }
-  #hero { min-height: auto; }
-  .hero-right-image { display: none; }
-  .hero-content { padding: 4rem 1.5rem; max-width: 100%; }
-  h1.hero-title { font-size: 2.8rem; }
-  .hero-stats { gap: 2rem; }
-  #about { grid-template-columns: 1fr; gap: 2rem; }
-  .about-accent-box { right: 0; bottom: -1rem; }
-  .services-grid, .testimonials-grid, .blog-grid, .portfolio-grid { grid-template-columns: 1fr; }
-  .portfolio-item:first-child { grid-column: span 1; }
-  .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
-  .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-  .form-row { grid-template-columns: 1fr; }
-  .footer-main { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 3rem 1.5rem 2rem; }
-  .footer-bottom { padding: 1.25rem 1.5rem; flex-direction: column; text-align: center; }
-  .proof-strip { padding: 1.5rem; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-left">
-    <span>📍 5150 Penn Ave, Suite 319, Pittsburgh, PA 15224</span>
+    <span>
+      <a href="https://maps.app.goo.gl/wrbDehgiuZUsrF8n8">📍 5150 Penn Ave, Suite 319, Pittsburgh, PA 15224</a>
+      </span>
     <a href="mailto:hello@kzfoundations.com">hello@kzfoundations.com</a>
   </div>
   <div class="topbar-right">
-    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <!-- <a href="https://linkedin.com" target="_blank">LinkedIn</a>
     <a href="https://instagram.com" target="_blank">Instagram</a>
-    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://facebook.com" target="_blank">Facebook</a> -->
+    <!-- <a href="https://drive.google.com/a/kzfoundations.com" target="_blank">Licensed, certified, and insured</a> -->
+    <span>Contractor License # GC-2026-007060</span>
     <a href="tel:4126089544" class="topbar-phone">📞 (412) 608-9544</a>
   </div>
 </div>
@@ -650,7 +33,7 @@ h1.hero-title      { animation-delay: 0.2s; }
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">
-    <img src="K_Z.png" alt="K&Z Foundations LLC Logo" class="nav-logo-img">
+    <img src="images/K_Z.png" alt="K&Z Foundations LLC Logo" class="nav-logo-img">
     <div class="nav-logo-text">
       <span class="nav-logo-name">K&Z Foundations LLC</span>
       <span class="nav-logo-sub">General Contractor · Pittsburgh, PA</span>
@@ -660,18 +43,19 @@ h1.hero-title      { animation-delay: 0.2s; }
     <li class="has-dropdown">
       <a href="#services">Services ▾</a>
       <ul class="dropdown">
-        <li><a href="#services">Residential Renovation</a></li>
-        <li><a href="#services">Commercial Renovation</a></li>
-        <li><a href="#services">Multifamily</a></li>
-        <li><a href="#services">Design-Build</a></li>
-        <li><a href="#services">Maintenance</a></li>
-        <li><a href="#services">Emergency Repairs</a></li>
+        <li><a href="./pages/services/residential.html">Residential Renovation</a></li>
+        <li><a href="./pages/services/commercial.html">Commercial Renovation</a></li>
+        <li><a href="./pages/services/multifamily.html">Multifamily</a></li>
+        <li><a href="./pages/services/design-built.html">Design-Build</a></li>
+        <li><a href="./pages/services/maintenance.html">Maintenance</a></li>
+        <li><a href="./pages/services/emergency.html">Emergency Repairs</a></li>
       </ul>
     </li>
     <li><a href="#about">About</a></li>
     <li><a href="#portfolio">Projects</a></li>
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#blog">Blog</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#contact" class="nav-cta">Request Estimate</a></li>
   </ul>
@@ -681,7 +65,7 @@ h1.hero-title      { animation-delay: 0.2s; }
 <section id="hero">
   <div class="hero-bg-pattern"></div>
   <div class="hero-gradient"></div>
-  <div class="hero-right-image" style="background-image: url('hero.jpg'); background-size: cover; background-position: center;"></div>
+  <div class="hero-right-image" style="background-image: url('images/hero.jpg'); background-size: cover; background-position: center;"></div>
   <div class="hero-content">
     <div class="hero-badge">Pittsburgh's Trusted General Contractor</div>
     <h1 class="hero-title">
@@ -712,7 +96,7 @@ h1.hero-title      { animation-delay: 0.2s; }
 </section>
 
 <!-- PROOF STRIP -->
-<div class="proof-strip">
+<!-- <div class="proof-strip">
   <div class="proof-strip-inner">
     <a href="#portfolio" class="proof-tag">Projects Gallery</a>
     <span class="proof-divider">|</span>
@@ -724,7 +108,11 @@ h1.hero-title      { animation-delay: 0.2s; }
     <span class="proof-divider">|</span>
     <a href="#contact" class="proof-tag">Service Areas</a>
   </div>
-</div>
+</div> -->
+<!-- 
+<div>
+  Clients choose us because of...
+</div> -->
 
 <!-- SERVICES -->
 <section id="services">
@@ -744,7 +132,11 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="service-name">Residential Renovation</div>
       <p class="service-desc">Kitchens, bathrooms, decks, basements, and whole-home remodels. We transform Pittsburgh homes with precision and care.</p>
-      <div class="service-arrow">Learn More →</div>
+      <!-- <button class="service-arrow">
+        Learn More →
+      </button> -->
+      <a href="pages/services/residential.html" class="service-arrow">Learn More →</a>
+
     </div>
     <div class="service-card">
       <div class="service-num">02</div>
@@ -753,7 +145,7 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="service-name">Commercial Renovation</div>
       <p class="service-desc">Office fit-outs, retail spaces, and commercial interiors delivered on schedule with minimal disruption to your operations.</p>
-      <div class="service-arrow">Learn More →</div>
+      <a href="pages/services/commercial.html" class="service-arrow">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-num">03</div>
@@ -762,7 +154,7 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="service-name">Multifamily</div>
       <p class="service-desc">Unit renovations, common area upgrades, and large-scale multifamily projects for investors and property managers.</p>
-      <div class="service-arrow">Learn More →</div>
+      <a href="pages/services/multifamily.html" class="service-arrow">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-num">04</div>
@@ -771,7 +163,7 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="service-name">Design-Build</div>
       <p class="service-desc">One point of contact from concept to completion. We collaborate with architects and designers to bring visions to life.</p>
-      <div class="service-arrow">Learn More →</div>
+      <a href="pages/services/design-built.html" class="service-arrow">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-num">05</div>
@@ -780,7 +172,7 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="service-name">Maintenance</div>
       <p class="service-desc">Ongoing property maintenance contracts for commercial clients and property management companies in Pittsburgh.</p>
-      <div class="service-arrow">Learn More →</div>
+      <a href="pages/services/maintenance.html" class="service-arrow">Learn More →</a>
     </div>
     <div class="service-card">
       <div class="service-num">06</div>
@@ -789,7 +181,7 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="service-name">Emergency Repairs</div>
       <p class="service-desc">Fast-response repairs when urgency matters most. We're available to keep your property safe and operational.</p>
-      <div class="service-arrow">Learn More →</div>
+      <a href="pages/services/emergency.html" class="service-arrow">Learn More →</a>
     </div>
   </div>
 </section>
@@ -798,8 +190,7 @@ h1.hero-title      { animation-delay: 0.2s; }
 <section id="about">
   <div class="about-visual">
     <div class="about-img-block">
-      <svg width="100" height="100" fill="none" stroke="white" stroke-width="1" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <p>Add your team photo here</p>
+      <img src="images/our_team.jpeg">
     </div>
     <div class="about-accent-box">
       <div class="about-accent-num">20+</div>
@@ -808,11 +199,11 @@ h1.hero-title      { animation-delay: 0.2s; }
   </div>
   <div class="about-text">
     <div class="section-eyebrow">Who We Are</div>
-    <h2 class="section-title">Pittsburgh Builders.<br><em>Local Roots. Lasting Work.</em></h2>
+    <h2 class="section-title">Pittsburgh Builders.<br><em>Transforming Spaces. Building Value.</em></h2>
     <div class="divider"></div>
     <p>K&Z Foundations LLC is a Pittsburgh-based general contracting company with over 20 years of combined experience across residential and commercial construction. We're not a faceless corporation — we're a local team that takes pride in every nail, every tile, and every deadline we hit.</p>
     <p>We move fast without cutting corners. Whether you're a homeowner wanting a dream kitchen, an investor flipping properties, or a property manager overseeing a portfolio — we have the crew and the track record to deliver.</p>
-    <p>We also work directly with architects and interior designers, bringing their visions to life with precision and professionalism that the best in Pittsburgh expect.</p>
+    <p>We also work directly with <strong>architects and interior designers</strong>, bringing their visions to life with precision and professionalism that the best in Pittsburgh expect.</p>
     <div class="about-clients">
       <span class="client-chip">Homeowners</span>
       <span class="client-chip">Investors</span>
@@ -830,22 +221,28 @@ h1.hero-title      { animation-delay: 0.2s; }
   <h2 class="section-title">Recent <em>Projects</em></h2>
   <div class="divider"></div>
   <div class="portfolio-tabs">
-    <span class="tab active">All Projects</span>
-    <span class="tab">Residential</span>
-    <span class="tab">Commercial</span>
-    <span class="tab">Multifamily</span>
-    <span class="tab">Before &amp; After</span>
+    <span class="tab active" data-filter="all">All Projects</span>
+    <span class="tab" data-filter="residential">Residential</span>
+    <span class="tab" data-filter="commercial">Commercial</span>
+    <span class="tab" data-filter="multifamily">Multifamily</span>
+    <span class="tab" data-filter="before-after">Before &amp; After</span>
   </div>
   <div class="portfolio-grid">
-    <div class="portfolio-item">
+    <div class="portfolio-item featured" data-category="residential">
       <div class="portfolio-label">Featured</div>
       <div class="portfolio-placeholder">
-        <svg width="60" height="60" fill="none" stroke="white" stroke-width="1" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-        <p>Add featured project photo</p>
+        <img src="images/bathroom-1/1.jpg" alt="Full kitchen and bathroom renovation in Shadyside, Pittsburgh">
       </div>
       <div class="portfolio-overlay"><div class="portfolio-info"><h3>Full Kitchen &amp; Bath Renovation</h3><span>Residential · Shadyside, Pittsburgh</span></div></div>
     </div>
-    <div class="portfolio-item">
+    <div class="portfolio-item" data-category="residential">
+      <div class="portfolio-label">Residential</div>
+      <div class="portfolio-placeholder">
+        <img src="images/deck-1/1.jpeg" alt="Deck construction project in Mt. Lebanon">
+      </div>
+      <div class="portfolio-overlay"><div class="portfolio-info"><h3>Deck Construction</h3><span>Residential · Mt. Lebanon</span></div></div>
+    </div>
+    <div class="portfolio-item" data-category="commercial">
       <div class="portfolio-label">Commercial</div>
       <div class="portfolio-placeholder">
         <svg width="48" height="48" fill="none" stroke="white" stroke-width="1" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/></svg>
@@ -853,21 +250,21 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="portfolio-overlay"><div class="portfolio-info"><h3>Office Fit-Out</h3><span>Commercial · Downtown Pittsburgh</span></div></div>
     </div>
-    <div class="portfolio-item">
-      <div class="portfolio-label">Residential</div>
-      <div class="portfolio-placeholder">
-        <svg width="48" height="48" fill="none" stroke="white" stroke-width="1" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <p>Add project photo</p>
-      </div>
-      <div class="portfolio-overlay"><div class="portfolio-info"><h3>Deck Construction</h3><span>Residential · Mt. Lebanon</span></div></div>
-    </div>
-    <div class="portfolio-item">
+    <div class="portfolio-item" data-category="multifamily">
       <div class="portfolio-label">Multifamily</div>
       <div class="portfolio-placeholder">
         <svg width="48" height="48" fill="none" stroke="white" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         <p>Add project photo</p>
       </div>
       <div class="portfolio-overlay"><div class="portfolio-info"><h3>Unit Renovation ×8</h3><span>Multifamily · Squirrel Hill</span></div></div>
+    </div>
+    <div class="portfolio-item" data-category="residential before-after">
+      <div class="portfolio-label">Before & After</div>
+      <div class="portfolio-placeholder">
+        <svg width="48" height="48" fill="none" stroke="white" stroke-width="1" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <p>Add project photo</p>
+      </div>
+      <div class="portfolio-overlay"><div class="portfolio-info"><h3>Kitchen</h3><span>Residential · Mt. Lebanon</span></div></div>
     </div>
   </div>
 </section>
@@ -951,10 +348,10 @@ h1.hero-title      { animation-delay: 0.2s; }
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-btn">Are you licensed and insured in Pennsylvania?<span class="faq-ico">+</span></button>
-        <div class="faq-answer">Yes. K&Z Foundations LLC is fully licensed as a general contractor in the state of Pennsylvania and carries full general liability and workers' compensation insurance. Documentation is available upon request.</div>
+        <div class="faq-answer">Yes. K&Z Foundations LLC is fully licensed as a general contractor in the state of Pennsylvania and carries full general liability and workers' compensation insurance. Contractor License # GC-2026-007060.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn">What areas of Pittsburgh do you serve?<span class="faq-ico">+</span></button>
+        <button class="faq-btn">Which areas of Pittsburgh do you serve?<span class="faq-ico">+</span></button>
         <div class="faq-answer">We serve Greater Pittsburgh including the South Hills, North Hills, East End, Downtown, and surrounding Allegheny County communities. Reach out if you're unsure whether we cover your area.</div>
       </div>
       <div class="faq-item">
@@ -999,7 +396,7 @@ h1.hero-title      { animation-delay: 0.2s; }
       </div>
       <div class="contact-detail">
         <div class="contact-detail-label">Service Areas</div>
-        <div class="contact-detail-val">Greater Pittsburgh · Allegheny County<br>South Hills · North Hills · East End</div>
+        <div class="contact-detail-val">Greater Pittsburgh · Allegheny County<br>South Hills · North Hills · East End · Downtown</div>
       </div>
       <div class="social-row">
         <a href="https://linkedin.com" target="_blank" class="social-btn" title="LinkedIn">in</a>
@@ -1060,7 +457,7 @@ h1.hero-title      { animation-delay: 0.2s; }
 <div class="footer-main">
   <div class="footer-brand">
     <div class="footer-logo">
-      <img src="K_Z.png" alt="K&Z Foundations LLC">
+      <img src="images/K_Z.png" alt="K&Z Foundations LLC">
       <span class="footer-logo-name">K&Z Foundations LLC</span>
     </div>
     <p>Pittsburgh's trusted general contractor for commercial and residential projects. Built on reputation. Powered by craftsmanship.</p>
@@ -1096,56 +493,15 @@ h1.hero-title      { animation-delay: 0.2s; }
     <ul>
       <li><a href="tel:4126089544">(412) 608-9544</a></li>
       <li><a href="mailto:hello@kzfoundations.com">hello@kzfoundations.com</a></li>
-      <li><a href="#">5150 Penn Ave, Suite 319<br>Pittsburgh, PA 15224</a></li>
+      <li><a href="https://maps.app.goo.gl/wrbDehgiuZUsrF8n8">5150 Penn Ave, Suite 319<br>Pittsburgh, PA 15224</a></li>
     </ul>
   </div>
 </div>
 <div class="footer-bottom">
   <span>© 2025 K&Z Foundations LLC · Pittsburgh, PA · All rights reserved.</span>
-  <span><a href="#">Privacy Policy</a> · <a href="#">Licensed &amp; Insured · PA GC License</a></span>
+  <span><a href="#">Privacy Policy</a> · <a href="#">Licensed &amp; Insured · PA GC License # GC-2026-007060</a></span>
 </div>
 
-<script>
-document.querySelectorAll('.faq-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
-
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
-
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.btn-submit');
-  btn.textContent = "✓ Sent! We'll be in touch within 1 business day.";
-  btn.style.background = '#2B5741';
-  btn.disabled = true;
-}
-
-// Scroll-triggered reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.08 });
-
-document.querySelectorAll('.service-card, .testi-card, .blog-card, .portfolio-item, .faq-item').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(22px)';
-  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
-  observer.observe(el);
-});
-</script>
+<script src="main.js" defer></script>
 </body>
 </html>
