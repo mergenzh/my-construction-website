@@ -47,11 +47,99 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
-// Contact / estimate request form
+// File upload area — list files, validate size, drag-and-drop, clear
+const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+
+document.querySelectorAll('.upload-area').forEach(area => {
+  const input     = area.querySelector('input[type="file"]');
+  const label     = area.querySelector('.upload-label');
+  const fileList  = area.querySelector('.upload-file-list');
+  const errorDiv  = area.querySelector('.upload-error');
+  const clearBtn  = area.querySelector('.upload-clear');
+
+  function render(files) {
+    fileList.innerHTML = '';
+    errorDiv.textContent = '';
+    errorDiv.hidden = true;
+    area.classList.remove('has-files', 'has-error');
+
+    if (!files || files.length === 0) {
+      fileList.hidden = true;
+      clearBtn.hidden = true;
+      label.hidden = false;
+      return;
+    }
+
+    // Validate total size
+    let total = 0;
+    for (const f of files) total += f.size;
+
+    // Render file rows
+    label.hidden = true;
+    fileList.hidden = false;
+    clearBtn.hidden = false;
+    area.classList.add('has-files');
+
+    for (const f of files) {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${f.name}</span><span class="file-size">${formatBytes(f.size)}</span>`;
+      fileList.appendChild(li);
+    }
+
+    // Show total and error if over limit
+    const totalLi = document.createElement('li');
+    totalLi.style.cssText = 'border-top:1px solid rgba(255,255,255,0.08);margin-top:0.25rem;padding-top:0.5rem;color:rgba(255,255,255,0.45);font-size:0.72rem;';
+    totalLi.innerHTML = `<span>Total</span><span class="file-size">${formatBytes(total)} / 4 MB</span>`;
+    fileList.appendChild(totalLi);
+
+    if (total > MAX_UPLOAD_BYTES) {
+      errorDiv.textContent = 'Total exceeds 4MB — please remove a file or compress your photos before submitting.';
+      errorDiv.hidden = false;
+      area.classList.add('has-error');
+    }
+  }
+
+  // Native file picker
+  input.addEventListener('change', () => render(input.files));
+
+  // Clear button — reset input and restore placeholder
+  clearBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    input.value = '';
+    render(null);
+  });
+
+  // Drag and drop
+  area.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    area.classList.add('drag-over');
+  });
+  area.addEventListener('dragleave', () => area.classList.remove('drag-over'));
+  area.addEventListener('drop', (e) => {
+    e.preventDefault();
+    area.classList.remove('drag-over');
+    if (e.dataTransfer.files.length) {
+      // Assign dropped files to the input so FormData picks them up
+      const dt = new DataTransfer();
+      for (const f of e.dataTransfer.files) dt.items.add(f);
+      input.files = dt.files;
+      render(input.files);
+    }
+  });
+});
+
+// Contact / estimate request form — sends to /api/send-estimate (Vercel → Resend)
 //
-// ACTIVE: mailto fallback (no backend needed) — opens the visitor's email app
-// pre-filled with their request. Can't attach files automatically; the visitor
-// has to add those themselves once the email opens.
+/* ----------------------------------------------------------------------
+   BACKUP: mailto fallback (no backend) — uncomment this and comment out
+   the fetch block below if you ever need to disable the Vercel function.
+
 document.querySelectorAll('.contact-form').forEach(form => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -98,13 +186,7 @@ ${description}`;
     }, 2500);
   });
 });
-
-/* ----------------------------------------------------------------------
-   BACKUP: Vercel + Resend version (handles attachments, sends server-side)
-   Swap this back in once RESEND_API_KEY is set in Vercel and the domain
-   is verified — just comment out the block above and uncomment this one.
-
-const MAX_TOTAL_UPLOAD_BYTES = 4 * 1024 * 1024; // keep under Vercel's 4.5MB request limit
+---------------------------------------------------------------------- */
 
 document.querySelectorAll('.contact-form').forEach(form => {
   form.addEventListener('submit', async (e) => {
@@ -114,13 +196,11 @@ document.querySelectorAll('.contact-form').forEach(form => {
     const originalText = btn.textContent;
     const fileInput = form.querySelector('input[type="file"]');
 
-    if (fileInput && fileInput.files.length) {
-      let total = 0;
-      for (const file of fileInput.files) total += file.size;
-      if (total > MAX_TOTAL_UPLOAD_BYTES) {
-        alert("Attached files are too large (4MB total max). Please remove a file or compress your photos — or email them directly to hello@kzfoundations.com.");
-        return;
-      }
+    // Block submit if upload area is showing a size error
+    const uploadArea = form.querySelector('.upload-area');
+    if (uploadArea && uploadArea.classList.contains('has-error')) {
+      uploadArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
     }
 
     btn.textContent = 'Sending...';
@@ -148,7 +228,6 @@ document.querySelectorAll('.contact-form').forEach(form => {
     }
   });
 });
----------------------------------------------------------------------- */
 
 // Scroll-triggered reveal
 const observer = new IntersectionObserver((entries) => {
