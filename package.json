@@ -1,0 +1,10 @@
+{
+  "name": "kz-foundations-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "K&Z Foundations LLC website",
+  "dependencies": {
+    "formidable": "^3.5.1",
+    "resend": "^4.0.0"
+  }
+}
