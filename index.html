@@ -450,9 +450,15 @@
       </div>
       <div class="form-group">
         <label class="form-label">Photos, Plans, or Documents (optional)</label>
-        <div class="upload-area">
+        <div class="upload-area" id="upload-area">
           <input type="file" name="attachments" multiple accept="image/*,.pdf,.doc,.docx">
-          <div class="upload-label"><span>Click to upload files</span> or drag &amp; drop here<br>JPG, PNG, PDF, DOC — you'll attach these yourself once your email app opens</div>
+          <div class="upload-label">
+            <span>Click to upload files</span> or drag &amp; drop here<br>
+            JPG, PNG, PDF, DOC · <strong>4MB total max</strong>
+          </div>
+          <ul class="upload-file-list" hidden></ul>
+          <div class="upload-error" hidden></div>
+          <button type="button" class="upload-clear" hidden>✕ Clear all files</button>
         </div>
       </div>
       <div>
