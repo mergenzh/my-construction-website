@@ -609,13 +609,42 @@ h2.section-title em { font-style: italic; color: var(--green-mid); }
 select.form-control option { background: var(--charcoal); }
 textarea.form-control { resize: vertical; min-height: 120px; }
 .upload-area {
-  border: 1.5px dashed rgba(255,255,255,0.12); border-radius: 3px; padding: 1.5rem;
-  text-align: center; cursor: pointer; transition: border-color 0.2s; position: relative;
+  border: 1.5px dashed rgba(255,255,255,0.2); border-radius: 3px; padding: 1.5rem;
+  text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  position: relative;
 }
 .upload-area:hover { border-color: var(--green-light); }
-.upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.upload-area.drag-over { border-color: var(--green-light); background: rgba(143,212,170,0.07); }
+.upload-area.has-files { border-style: solid; border-color: var(--green-light); cursor: default; }
+.upload-area.has-error { border-color: #e05c5c; }
+.upload-area input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-area.has-files input { pointer-events: none; }
 .upload-label { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
 .upload-label span { color: #8FD4AA; font-weight: 500; }
+.upload-label strong { color: rgba(255,255,255,0.5); font-weight: 500; }
+.upload-file-list {
+  list-style: none; margin: 0.85rem 0 0; padding: 0;
+  text-align: left; display: flex; flex-direction: column; gap: 0.4rem;
+}
+.upload-file-list li {
+  font-size: 0.78rem; color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06); border-radius: 2px;
+  padding: 0.35rem 0.65rem;
+  display: flex; justify-content: space-between; gap: 1rem;
+}
+.upload-file-list li .file-size { color: rgba(255,255,255,0.35); white-space: nowrap; }
+.upload-error {
+  margin-top: 0.65rem; font-size: 0.78rem;
+  color: #e8807f; font-weight: 500;
+}
+.upload-clear {
+  margin-top: 0.85rem; background: none;
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 2px;
+  color: rgba(255,255,255,0.45); font-size: 0.72rem;
+  padding: 0.35rem 0.85rem; cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.upload-clear:hover { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.75); }
 .btn-submit {
   background: var(--green-light); color: white; border: none;
   padding: 1.05rem 2.5rem; font-family: var(--font-body);
