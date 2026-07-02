@@ -341,7 +341,22 @@ h2.section-title em { font-style: italic; color: var(--green-mid); }
   transition: background 0.3s, transform 0.2s;
   border: 1px solid transparent;
   position: relative; overflow: hidden;
+  text-decoration: none; display: flex; flex-direction: column;
 }
+/* blurred photo background layer */
+.service-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: var(--card-bg, none);
+  background-size: cover; background-position: center;
+  filter: blur(3px) brightness(0.28) saturate(0.6);
+  transform: scale(1.06); /* prevent blur edge bleed */
+  transition: filter 0.4s, transform 0.4s;
+  z-index: 0;
+}
+.service-card:hover::after { filter: blur(2px) brightness(0.38) saturate(0.7); transform: scale(1.08); }
+/* keep all card content above the blurred layer */
+.service-card > * { position: relative; z-index: 1; }
 .service-card::before {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0;
   height: 3px; background: var(--green-light);
@@ -371,25 +386,17 @@ h2.section-title em { font-style: italic; color: var(--green-mid); }
 }
 .service-desc { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.75; font-weight: 300; }
 .service-arrow {
-    /* color: var(--green-light);
-    margin-top: 1.25rem; font-size: 0.8rem; letter-spacing: 0.1em;
-    opacity: 0; transition: opacity 0.2s;
-    background-color: transparent; */
-
-    background: transparent; color: var(--green-light); border: none;
-    margin-top: 1.25rem;
-    font-family: var(--font-body);
-    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.16em; 
-    /* text-transform: uppercase; */
-    opacity: 0;
-    /* transition: opacity 0.2s; */
-    cursor: pointer;
-    border-radius: 3px;
-    transition: background 0.25s;
-    align-self: flex-start;
-    margin-top: 0.25rem;
+  display: block;
+  background: transparent; color: var(--green-light); border: none;
+  margin-top: auto; padding-top: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.16em;
+  opacity: 0.7;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: opacity 0.2s;
+  text-decoration: none;
 }
-
 .service-card:hover .service-arrow { opacity: 1; }
 
 /* ─── ABOUT ─── */
@@ -449,12 +456,18 @@ h2.section-title em { font-style: italic; color: var(--green-mid); }
   flex-direction: column; gap: 0.75rem;
   background: linear-gradient(135deg, #2B5741 0%, #1C3D2E 100%);
 }
-.portfolio-item.featured .portfolio-placeholder { aspect-ratio: 16/9; }
+.portfolio-item.featured .portfolio-placeholder { aspect-ratio: 5/3; }
+/* card sitting beside the featured item — fills the row height the featured item sets */
+.portfolio-item.beside-featured { display: flex; flex-direction: column; }
+.portfolio-item.beside-featured .portfolio-placeholder { aspect-ratio: unset; flex: 1; }
 .portfolio-placeholder svg { opacity: 0.15; }
 .portfolio-placeholder img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 .portfolio-placeholder p { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
 .portfolio-overlay {
@@ -478,6 +491,7 @@ h2.section-title em { font-style: italic; color: var(--green-mid); }
   background: var(--green); color: white;
   font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
   padding: 0.3rem 0.75rem; border-radius: 2px;
+  z-index: 1;
 }
 
 /* ─── TESTIMONIALS ─── */
@@ -767,10 +781,12 @@ h1.hero-title      { animation-delay: 0.2s; }
   #about { grid-template-columns: 1fr; gap: 2rem; }
   .about-accent-box { right: 0; bottom: -1rem; }
   .services-grid, .testimonials-grid, .blog-grid, .portfolio-grid { grid-template-columns: 1fr; }
+  .topbar { display: none; }
   .service-card { padding-top: 1.5rem; padding-bottom: 1.5rem; }
   .testi-card { padding-top: 1.25rem; padding-bottom: 1.25rem; }
-  .service-arrow { opacity: 1; }
   .portfolio-item.featured { grid-column: span 1; }
+  .portfolio-item.beside-featured { display: block; }
+  .portfolio-item.beside-featured .portfolio-placeholder { flex: unset; aspect-ratio: 4/3; }
   .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
   .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
   .form-row { grid-template-columns: 1fr; }
