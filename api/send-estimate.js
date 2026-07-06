@@ -4,15 +4,16 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Where estimate requests land
 const TO_EMAIL = 'hello@kzfoundations.com';
-
-// Must be an address on a domain you've verified with Resend (see setup notes).
-// It does not need to be a real inbox — it's just the "from" identity.
 const FROM_EMAIL = 'K&Z Foundations Website <estimates@kzfoundations.com>';
-
-// Keep comfortably under Vercel's hard 4.5MB request body limit
 const MAX_TOTAL_BYTES = 4 * 1024 * 1024;
+
+// Tell Vercel NOT to pre-parse the request body — formidable needs the raw stream
+module.exports.config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -30,28 +31,30 @@ module.exports = async (req, res) => {
     [fields, files] = await form.parse(req);
   } catch (err) {
     console.error('Form parse error:', err);
+    // formidable error code 1009 = maxTotalFileSize exceeded
+    const isSizeError = err.code === 1009 || (err.message || '').toLowerCase().includes('maxTotalFileSize');
     return res.status(413).json({
-      error: 'Your attachments are too large. Please keep total uploads under 4MB, or email photos directly to hello@kzfoundations.com.',
+      error: isSizeError
+        ? 'Your attachments are too large. Please keep total uploads under 4MB, or email photos directly to hello@kzfoundations.com.'
+        : 'We couldn\'t read your submission. Please try again or call us at (412) 608-9544.',
     });
   }
 
   const get = (val) => (Array.isArray(val) ? val[0] : val) || '';
 
-  const name = get(fields.name);
-  const type = get(fields.type);
-  const phone = get(fields.phone);
-  const email = get(fields.email);
+  const name        = get(fields.name);
+  const type        = get(fields.type);
+  const phone       = get(fields.phone);
+  const email       = get(fields.email);
   const description = get(fields.description);
 
   if (!name || !phone || !email || !description) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
   }
 
-  // Collect uploaded files (field name "attachments", possibly multiple)
+  // Collect uploaded files — filter out empty entries browsers send for unselected inputs
   const rawFiles = files.attachments
-    ? Array.isArray(files.attachments)
-      ? files.attachments
-      : [files.attachments]
+    ? Array.isArray(files.attachments) ? files.attachments : [files.attachments]
     : [];
 
   const attachments = [];
