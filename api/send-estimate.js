@@ -9,12 +9,6 @@ const FROM_EMAIL = 'K&Z Foundations Website <estimates@kzfoundations.com>';
 const MAX_TOTAL_BYTES = 4 * 1024 * 1024;
 
 // Tell Vercel NOT to pre-parse the request body — formidable needs the raw stream
-module.exports.config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -104,4 +98,11 @@ module.exports = async (req, res) => {
     console.error('Send error:', err);
     return res.status(500).json({ error: 'Something went wrong sending your request. Please try again or call us.' });
   }
+};
+
+// Must come AFTER module.exports is assigned — otherwise the handler assignment overwrites it
+module.exports.config = {
+  api: {
+    bodyParser: false,
+  },
 };
