@@ -48,7 +48,8 @@ document.querySelectorAll('.tab').forEach(tab => {
 });
 
 // File upload area — list files, validate size, drag-and-drop, clear
-const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+// base64 overhead is ~33%, so 3MB binary → ~4MB JSON, safely under Vercel's 4.5MB cap
+const MAX_UPLOAD_BYTES = 3 * 1024 * 1024;
 
 function formatBytes(bytes) {
   if (bytes < 1024) return bytes + ' B';
@@ -99,7 +100,7 @@ document.querySelectorAll('.upload-area').forEach(area => {
     fileList.appendChild(totalLi);
 
     if (total > MAX_UPLOAD_BYTES) {
-      errorDiv.textContent = 'Total exceeds 4MB — please remove a file or compress your photos before submitting.';
+      errorDiv.textContent = 'Total exceeds 3MB — please remove a file or compress your photos before submitting.';
       errorDiv.hidden = false;
       area.classList.add('has-error');
     }
@@ -207,9 +208,39 @@ document.querySelectorAll('.contact-form').forEach(form => {
     btn.disabled = true;
 
     try {
+      // Read form text fields
+      const get = (name) => {
+        const el = form.querySelector(`[name="${name}"]`);
+        return el ? el.value.trim() : '';
+      };
+      const payload = {
+        name:        get('name'),
+        type:        get('type'),
+        phone:       get('phone'),
+        email:       get('email'),
+        description: get('description'),
+        attachments: [],
+      };
+
+      // Encode any files as base64
+      const fileInput = form.querySelector('input[type="file"]');
+      if (fileInput && fileInput.files.length) {
+        for (const file of fileInput.files) {
+          if (file.size === 0) continue;
+          const base64 = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+          payload.attachments.push({ filename: file.name, content: base64 });
+        }
+      }
+
       const response = await fetch('/api/send-estimate', {
         method: 'POST',
-        body: new FormData(form),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
