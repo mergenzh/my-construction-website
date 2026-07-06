@@ -11,8 +11,17 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed.' });
   }
 
-  // Vercel automatically parses application/json into req.body
-  const { name, type, phone, email, description, attachments = [] } = req.body || {};
+  // Vercel plain Node.js functions don't auto-parse req.body — read the stream manually
+  let body;
+  try {
+    const chunks = [];
+    for await (const chunk of req) chunks.push(chunk);
+    body = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+  } catch (err) {
+    return res.status(400).json({ error: 'Could not parse request. Please try again.' });
+  }
+
+  const { name, type, phone, email, description, attachments = [] } = body;
 
   if (!name || !phone || !email || !description) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
