@@ -18,7 +18,10 @@
   --font-body:    'Outfit', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* nav height (76px) + small breathing room */
+}
 body {
   font-family: var(--font-body);
   background: var(--white);
