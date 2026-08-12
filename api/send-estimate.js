@@ -2,7 +2,7 @@ const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const TO_EMAIL   = 'hello@kzfoundations.com';
+const TO_EMAIL   = 'mergen@kzfoundations.com';
 const FROM_EMAIL = 'K&Z Foundations Website <estimates@kzfoundations.com>';
 
 module.exports = async (req, res) => {
